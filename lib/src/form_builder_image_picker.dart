@@ -237,11 +237,15 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
               dynamic item,
               int index,
             ) {
-              bool checkIfItemIsCustomType(dynamic e) => !(e is XFile ||
-                  e is String ||
-                  e is Uint8List ||
-                  e is ImageProvider ||
-                  e is Widget);
+              bool checkIfItemIsCustomType(dynamic e){
+                if(e is String && e.contains(':9000')) return true;
+
+                return !(e is XFile ||
+                    e is String ||
+                    e is Uint8List ||
+                    e is ImageProvider ||
+                    e is Widget);
+              };
 
               final itemCustomType = checkIfItemIsCustomType(item);
               var displayItem = item;
